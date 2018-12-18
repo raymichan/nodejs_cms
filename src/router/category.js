@@ -3,12 +3,12 @@ let Router = express.Router();
 
 const bodyParser = require('body-parser');
 let urlencodedParser = bodyParser.urlencoded({ extended: false })
-
+//引入自定义的数据库所有操作模块
 const db = require('../db');
 
 
 Router.get('/',async (req,res)=>{
-    //获取所有分类
+    //获取所有分类 即有读取数据库的操作
 
     let data
     try{
