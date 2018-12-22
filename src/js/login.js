@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 if(status.includes(xhr.status)){
                     let res = JSON.parse(xhr.responseText);
                     if(res.code === 1){
-                        location.href = '/index.html';
+                        location.href = '/center.html';
                     }else{
                         NPhint.className = 'show layui-icon layui-icon-close-fill';
                     }

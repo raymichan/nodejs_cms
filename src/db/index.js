@@ -1,12 +1,12 @@
 /**
- * 关于数据库的所有操作
+ * 关于数据库的所有操作{对于分类、用户……的增删改查都放在这里来}
  * 增
  * 删
  * 改
  * 查
  */
 
-//引用模块
+// 引用mongodb模块
 const mongodb = require('mongodb');
 // 获取Mongo客户端
 const MongoClient = mongodb.MongoClient
@@ -22,7 +22,7 @@ function connect(collectionName){
             }
 
             // 使用数据库
-            let db = client.db('mytest');
+            let db = client.db('h51809');
 
             // 使用集合
             let col = db.collection(collectionName);
@@ -33,17 +33,17 @@ function connect(collectionName){
 }
 
 // 查
-exports.find = (collectionName,query)=>{
+exports.findOne = (collectionName,query)=>{
     return new Promise(async(resolve,reject)=>{
 
         let {col,client} = await connect(collectionName);
 
         // 查询所有分类
-        col.find(query).toArray((err,result)=>{
+        col.findOne(query).toArray((err,result)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:'查询失败',
+                    msg:'fail',
                     data:err
                 });
             }else{
@@ -70,12 +70,12 @@ exports.insert = (collectionName,data)=>{
         let {col,client} = await connect(collectionName);
 
 
-        // 查询所有分类
+        // 插入所有分类
         col[Array.isArray(data) ? 'insertMany':'insertOne'](data,(err,result)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:'插入失败',
+                    msg:'fail',
                     data:err
                 });
             }else{
@@ -107,7 +107,7 @@ exports.delete = (collectionName,query)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:'删除失败',
+                    msg:'fail',
                     data:err
                 });
             }else{
@@ -137,12 +137,12 @@ exports.update = (collectionName,query,data)=>{
         //     query = {_id:query._id}
         // }
 
-        // 查询所有分类
+        // 更新所有分类
         col[Array.isArray(query) ? 'updateMany':'updateOne'](query,{$set:data},(err,result)=>{
             if(err){
                 reject({
                     code:0,
-                    msg:'更新失败',
+                    msg:'fail',
                     data:err
                 });
             }else{

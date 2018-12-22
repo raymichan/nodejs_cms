@@ -1,29 +1,17 @@
 {
-  "name": "nodejs_cms",
+  "name": "001.NodeProject",
   "version": "1.0.0",
-  "description": "后台管理系统",
+  "description": "",
   "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/raymichan/nodejs_cms.git"
-  },
-  "author": "crm",
+  "keywords": [],
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/raymichan/nodejs_cms/issues"
-  },
-  "homepage": "https://github.com/raymichan/nodejs_cms#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "mongodb": "^3.1.10",
-    "request": "^2.88.0",
-    "supervisor": "^0.12.0"
+    "mongodb": "^3.1.10"
   }
 }
