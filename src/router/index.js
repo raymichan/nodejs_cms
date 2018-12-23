@@ -3,9 +3,9 @@ const express = require('express');
 
 // 引入单独路由模块
 const loginRouter = require('./login');
+const userRouter = require('./user');
 // const goodslistRouter = require('./goods_list');
 // const categoryRouter = require('./category');
-// const userRouter = require('./user');
 // const ordersRouter = require('./orders');
 // const uploadRouter = require('./upload')
 
@@ -37,7 +37,7 @@ Router.use('/login',loginRouter);
 // Router.use('/category',categoryRouter);
 
 // 关于用户列表的路由
-// Router.use('/user',userRouter);
+Router.use('/user',userRouter);
 
 // 关于订单表的路由
 // Router.use('/orders',ordersRoute);
