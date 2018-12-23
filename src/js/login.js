@@ -19,9 +19,11 @@ document.addEventListener('DOMContentLoaded',function(){
         if(res){
             hint.className="";
             yzmOk=true;//正确的情况才打开开关
+            // console.log('验证码正确');
         }else{
             hint.className = 'show layui-icon layui-icon-close-fill';
             yzmOk=false;
+            // console.log('验证码错误')
         }
         
     }
@@ -40,7 +42,7 @@ document.addEventListener('DOMContentLoaded',function(){
                 if(status.includes(xhr.status)){
                     let res = JSON.parse(xhr.responseText);
                     if(res.code === 1){
-                        location.href = '/center.html';
+                        location.href = '/home.html';
                     }else{
                         NPhint.className = 'show layui-icon layui-icon-close-fill';
                     }

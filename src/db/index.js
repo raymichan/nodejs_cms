@@ -9,8 +9,8 @@
 // 引用mongodb模块
 const mongodb = require('mongodb');
 // 获取Mongo客户端
-const MongoClient = mongodb.MongoClient
-
+const MongoClient = mongodb.MongoClient;
+let url = 'mongodb://localhost:27017/h51809';
 // 连接数据库
 function connect(collectionName){
     return new Promise((resolve,reject)=>{
@@ -31,9 +31,46 @@ function connect(collectionName){
         });
     })
 }
-
-// 查
+//百度查找解决useNewUrlParser 警告解决办法
+// module.exports = {
+//     getDB: function (callback) {
+//         MongoClient.connect(url, {useNewUrlParser:true},  function (err, db) {
+//             callback(db)   
+//         })
+//     }
+// }
+// 查一
+// db.findOne('admin_inf',{name:username,password});
 exports.findOne = (collectionName,query)=>{
+    return new Promise(async(resolve,reject)=>{
+
+        let {col,client} = await connect(collectionName);
+
+        // 查询所有分类
+        col.findOne(query,(err,result)=>{
+            if(err){
+                reject({
+                    code:0,
+                    msg:'fail'
+                });
+            }else{
+
+                resolve({
+                    code:1,
+                    msg:'success'
+                });
+            }
+
+
+            // 关闭数据库，避免资源浪费
+            client.close();
+        });
+    
+    });
+}
+
+// 查多
+exports.find = (collectionName,query)=>{
     return new Promise(async(resolve,reject)=>{
 
         let {col,client} = await connect(collectionName);

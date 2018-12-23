@@ -12,6 +12,20 @@ const loginRouter = require('./login');
 //express里面厉害的方法Router()，通过它可以把路由分散开来
 let Router = express.Router();
 
+Router.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+
+    // 跨域请求CORS中的预请求
+    if(req.method=="OPTIONS") {
+      res.send(200);/*让options请求快速返回*/
+    } else{
+      next();
+    }
+});
+
+
 //用Router.get('/home',(req.res)=>{})取代app.get('/home',(req.res)=>{})
 // 关于登录的路由
 Router.use('/login',loginRouter);

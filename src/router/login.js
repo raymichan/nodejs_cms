@@ -14,7 +14,7 @@ let urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 // 路由
 // 登录
-Router.post('/login',urlencodedParser,async(req,res)=>{
+Router.post('/',urlencodedParser,async(req,res)=>{
     let {username,password} = req.body;
 
     // 处理password为数字的情况
@@ -24,13 +24,18 @@ Router.post('/login',urlencodedParser,async(req,res)=>{
     console.log({username,password});
 
     // 查询是否存在数据
+    let data;
     try{
-        user.findOne('admin_inf',{name:username,password});
+        // user.findOne('admin_inf',{name:username,password});
+        data = await db.findOne('admin_inf',{name:username,password});
     }catch(err){
         data = err;
     }
-
+        console.log(data);
      res.send(data);
+
+     //
+     
     
 });
 module.exports = Router;
